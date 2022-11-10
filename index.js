@@ -67,6 +67,13 @@ async function run(){
             const result = await reviewCollection.insertOne(review);
             res.send(result);
         })
+
+        app.delete('/myreview/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const result = await reviewCollection.deleteOne(query);
+            res.send(result);
+        })
         
     }
 
@@ -79,6 +86,6 @@ run().catch(err => console.log(err))
 
 
 
-// app.listen(port, ()=>{
-//     console.log(`wending server is running on: ${port}`)
-// })
+app.listen(port, ()=>{
+    console.log(`wending server is running on: ${port}`)
+})
